@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".DeviceActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="186"/>
+
+    <ImageButton
+        android:id="@+id/btselect"
+        android:layout_width="430dp"
+        android:layout_height="0dp"
+        android:layout_weight="42"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/white"
+        android:contentDescription="TODO"
+        android:src="@drawable/select"/>
+
+    <View
+        android:layout_width="656dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="32dp"
+        android:background="#808080"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="252"
+        android:layout_marginTop="90dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="100dp"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/btic23"
+            android:layout_width="254dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:contentDescription="TODO"
+            android:scaleType="fitStart"
+            android:src="@drawable/icon23"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="208dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/ic23"
+            android:textSize="48sp"
+            android:lines="1"
+            android:layout_marginStart="78dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="252"
+        android:layout_marginTop="108dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="100dp"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/btic43"
+            android:layout_width="254dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:contentDescription="TODO"
+            android:scaleType="fitStart"
+            android:src="@drawable/icon43"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="208dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/ic43"
+            android:maxLines="1"
+            android:textSize="48sp"
+            android:layout_marginStart="78dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="252"
+        android:layout_marginTop="108dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="100dp"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/btic63"
+            android:layout_width="254dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:contentDescription="TODO"
+            android:scaleType="fitStart"
+            android:src="@drawable/icon43"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="208dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/ic63"
+            android:maxLines="1"
+            android:textSize="48sp"
+            android:layout_marginStart="78dp"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btsite"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="82"
+        android:layout_marginTop="178dp"
+        android:text="@string/www_icecube_ru"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:backgroundTint="@color/white"
+        android:textColor="#4963A7"
+        android:textAllCaps="false" />
+
+</LinearLayout>

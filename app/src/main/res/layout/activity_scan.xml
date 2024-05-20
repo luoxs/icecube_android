@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ScanActivity">
+
+
+    <TextView
+        android:id="@+id/protype"
+        android:layout_width="106dp"
+        android:layout_height="0dp"
+        android:layout_weight="40"
+        android:layout_marginTop="68dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="106dp"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:layout_gravity="center"/>
+
+
+    <ImageButton
+        android:id="@+id/btscan"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="260"
+        android:layout_marginTop="216dp"
+        android:background="@color/white"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/scan"
+        android:scaleType="fitCenter"/>
+
+
+    <ImageButton
+        android:id="@+id/btbluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="260"
+        android:layout_marginTop="70dp"
+        android:background="@color/white"
+        android:contentDescription="@string/todo1"
+        android:src="@drawable/bluetooth"
+        android:scaleType="fitCenter"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="80"
+        android:layout_marginTop="200dp"
+        android:text="www.icecube.ru"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="430dp"
+        android:layout_height="0dp"
+        android:layout_weight="592"
+        android:layout_marginStart="160dp"
+        android:scaleType="fitEnd"
+        android:src="@drawable/iconlogo"
+        android:text="Hello World!" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="53"
+        android:textColor="@color/blue"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:text="@string/camp"
+        android:layout_gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="524"/>
+    <ImageButton
+        android:id="@+id/btadd"
+        android:layout_width="430dp"
+        android:layout_height="0dp"
+        android:layout_weight="100"
+        android:src="@drawable/addoff"
+        android:backgroundTint="@color/white"
+
+        android:layout_marginLeft="160dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="275"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="82"
+        android:text="www.icecube.ru"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"/>
+</LinearLayout>
