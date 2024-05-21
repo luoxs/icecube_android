@@ -1,21 +1,91 @@
 package com.example.icecube;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Objects;
+
 import me.jessyan.autosize.internal.CustomAdapt;
 
 public class BoardActivity extends AppCompatActivity implements CustomAdapt {
+    private mode_dialog mdialog;
+    private turbo_dialog tdialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
+
+        ImageButton btmode = findViewById(R.id.btmode);
+        ImageButton btstatus = findViewById(R.id.btstatus);
+
+        btmode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mdialog =
+                        new mode_dialog(BoardActivity.this, R.layout.dialog_mode_layout, new mode_dialog.OnConfirmListener() {
+                            @Override
+                            public void onConfirm() {
+                                if (mdialog != null) {
+                                    mdialog.dismiss();
+                                }
+                            }
+                        }, new mode_dialog.OnHighListener() {
+                            @Override
+                            public void onHigh() {
+
+                            }
+                        }, new mode_dialog.OnmiddleListener() {
+                            @Override
+                            public void onHigh() {
+
+                            }
+                        }, new mode_dialog.OnLowLstener() {
+                            @Override
+                            public void onHigh() {
+
+                            }
+                        });
+                mdialog.show();
+            }
+        });
+
+        btstatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tdialog =
+                        new turbo_dialog(BoardActivity.this, R.layout.dialog_turbo, new turbo_dialog.OnConfirmListener() {
+                            @Override
+                            public void onConfirm() {
+                                if (tdialog != null) {
+                                    tdialog.dismiss();
+                                }
+                            }
+                        }, new turbo_dialog.OnTurboListener() {
+                            @Override
+                            public void onHigh() {
+
+                            }
+                        }, new turbo_dialog.OnEcoListener() {
+                            @Override
+                            public void onHigh() {
+
+                            }
+                        });
+                tdialog.show();
+            }
+        });
     }
 
     @Override
@@ -27,4 +97,5 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
     public float getSizeInDp() {
         return 0;
     }
+
 }

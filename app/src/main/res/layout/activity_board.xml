@@ -190,7 +190,7 @@
         android:background="@drawable/round_corner">
 
         <ImageButton
-            android:id="@+id/tbmode"
+            android:id="@+id/btmode"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerVertical="true"
@@ -207,11 +207,11 @@
             android:src="@drawable/power"/>
 
         <ImageButton
-            android:id="@+id/btturbo"
+            android:id="@+id/btstatus"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginEnd="62dp"
             android:contentDescription="TODO"
             android:src="@drawable/turbo"/>
