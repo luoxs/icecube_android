@@ -6,7 +6,6 @@ plugins {
 android {
     namespace = "com.example.icecube"
     compileSdk = 34
-
     defaultConfig {
         applicationId = "com.example.icecube"
         minSdk = 24
