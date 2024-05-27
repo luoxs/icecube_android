@@ -32,7 +32,7 @@ public class mode_dialog extends Dialog {
      */
 
     public mode_dialog(Context context, int layoutId, OnConfirmListener confirmListener, OnHighListener highListener,OnmiddleListener middleListener,OnLowLstener lowLstener) {
-        super(context,R.style.Theme_IceCube);
+        super(context,R.style.CustomButtonStyle);
        // super(context, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog);
         mConfirmListener=confirmListener;
         mHighListener = highListener;
