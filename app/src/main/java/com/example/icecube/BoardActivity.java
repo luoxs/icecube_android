@@ -1,5 +1,6 @@
 package com.example.icecube;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,13 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
 
         ImageButton btmode = findViewById(R.id.btmode);
         ImageButton btstatus = findViewById(R.id.btstatus);
+
+        btmode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
 
         btmode.setOnClickListener(new View.OnClickListener() {
             @Override

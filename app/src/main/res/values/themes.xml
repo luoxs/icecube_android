@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.IceCube" parent="Base.Theme.IceCube" />
+
 </resources>
