@@ -1,7 +1,9 @@
 package com.example.icecube;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -52,17 +54,18 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
                         }, new mode_dialog.OnHighListener() {
                             @Override
                             public void onHigh() {
-
+                                v.setBackgroundResource(R.color.blue);
+                                Log.v("high button ","high button clicked!------------");
                             }
                         }, new mode_dialog.OnmiddleListener() {
                             @Override
-                            public void onHigh() {
-
+                            public void onMiddle() {
+                                Log.v("middle button ","middle button clicked!------------");
                             }
-                        }, new mode_dialog.OnLowLstener() {
+                        }, new mode_dialog.OnLowListener() {
                             @Override
-                            public void onHigh() {
-
+                            public void onLow() {
+                                Log.v("low button ","low button clicked!------------");
                             }
                         });
                 mdialog.show();

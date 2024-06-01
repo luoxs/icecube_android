@@ -7,8 +7,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 
 public class mode_dialog extends Dialog {
@@ -22,7 +26,7 @@ public class mode_dialog extends Dialog {
     private OnConfirmListener mConfirmListener;
     private OnHighListener mHighListener;
     private OnmiddleListener mMiddleListener;
-    private OnLowLstener mLowLstener;
+    private OnLowListener mLowListener;
 
     /**
      *
@@ -31,16 +35,16 @@ public class mode_dialog extends Dialog {
      * @param confirmListener
      * @param highListener
      * @param middleListener
-     * @param lowLstener
+     * @param lowListener
      */
 
-    public mode_dialog(Context context, int layoutId, OnConfirmListener confirmListener, OnHighListener highListener,OnmiddleListener middleListener,OnLowLstener lowLstener) {
+    public mode_dialog(Context context, int layoutId, OnConfirmListener confirmListener, OnHighListener highListener,OnmiddleListener middleListener,OnLowListener lowListener) {
         super(context,R.style.CustomButtonStyle);
        // super(context, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog);
         mConfirmListener=confirmListener;
         mHighListener = highListener;
         mMiddleListener = middleListener;
-        mLowLstener = lowLstener;
+        mLowListener = lowListener;
         mLayoutId=layoutId;
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
        // getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -54,12 +58,12 @@ public class mode_dialog extends Dialog {
 
     //点击取消对应的监听器
     public interface OnmiddleListener {
-        void onHigh();
+        void onMiddle();
     }
 
     //点击取消对应的监听器
-    public interface OnLowLstener {
-        void onHigh();
+    public interface OnLowListener {
+        void onLow();
     }
 
     //点击确定对应的监听器
@@ -77,11 +81,39 @@ public class mode_dialog extends Dialog {
         btlow = (Button) findViewById(R.id.btlow);
         mConfirm= (Button) findViewById(R.id.btcomfirm);
 
+        // 设置对话框样式，这里使用了无标题和透明的背景
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // 设置对话框外的背景变暗
+        WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
+        layoutParams.dimAmount = 0.2f; // 设置背景变暗的程度，0.0表示不变暗，1.0表示全黑
+        getWindow().setAttributes(layoutParams);
+
         mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mConfirmListener.onConfirm();
             }
+        });
+
+        btHigh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHighListener.onHigh();
+            }
+        });
+
+        btmiddle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMiddleListener.onMiddle();
+            }
+        });
+
+        btlow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {mLowListener.onLow();}
         });
     }
 
