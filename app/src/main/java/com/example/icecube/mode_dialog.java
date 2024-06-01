@@ -2,8 +2,11 @@ package com.example.icecube;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,6 +42,9 @@ public class mode_dialog extends Dialog {
         mMiddleListener = middleListener;
         mLowLstener = lowLstener;
         mLayoutId=layoutId;
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+       // getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
     }
 
     //点击取消对应的监听器

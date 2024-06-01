@@ -5,8 +5,8 @@
     android:layout_marginLeft="100dp"
     android:layout_marginRight="100dp"
     android:layout_gravity="center"
-    android:background="#E4E4E4"
-    android:layout_height="700dp">
+    android:layout_height="700dp"
+    android:background="@drawable/round_corner">
     
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bthigh"
