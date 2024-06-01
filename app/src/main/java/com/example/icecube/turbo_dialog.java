@@ -71,7 +71,6 @@ public class turbo_dialog extends Dialog {
             }
         });
 
-
         btTurbo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

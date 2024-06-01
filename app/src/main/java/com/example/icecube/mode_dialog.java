@@ -39,16 +39,13 @@ public class mode_dialog extends Dialog {
      */
 
     public mode_dialog(Context context, int layoutId, OnConfirmListener confirmListener, OnHighListener highListener,OnmiddleListener middleListener,OnLowListener lowListener) {
-        super(context,R.style.CustomButtonStyle);
+        super(context,R.style.Theme_IceCube);
        // super(context, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog);
         mConfirmListener=confirmListener;
         mHighListener = highListener;
         mMiddleListener = middleListener;
         mLowListener = lowListener;
         mLayoutId=layoutId;
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-       // getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
     }
 
     //点击对应的监听器
