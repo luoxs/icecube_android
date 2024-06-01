@@ -1,5 +1,6 @@
 package com.example.icecube;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -85,22 +86,44 @@ public class mode_dialog extends Dialog {
         });
 
         btHigh.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 mHighListener.onHigh();
+                btHigh.setBackgroundColor(Color.parseColor("#0C3B95"));
+                btHigh.setTextColor(Color.parseColor("#FFFFFF"));
+                btmiddle.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                btmiddle.setTextColor(Color.parseColor("#E4E4E4"));
+                btlow.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                btlow.setTextColor(Color.parseColor("#E4E4E4"));
             }
         });
 
         btmiddle.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 mMiddleListener.onMiddle();
+                btmiddle.setBackgroundColor(Color.parseColor("#0C3B95"));
+                btmiddle.setTextColor(Color.parseColor("#FFFFFF"));
+                btHigh.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                btHigh.setTextColor(Color.parseColor("#E4E4E4"));
+                btlow.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                btlow.setTextColor(Color.parseColor("#E4E4E4"));
             }
         });
 
         btlow.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
-            public void onClick(View v) {mLowListener.onLow();}
+            public void onClick(View v) {mLowListener.onLow();
+                btlow.setBackgroundColor(Color.parseColor("#0C3B95"));
+                btlow.setTextColor(Color.parseColor("#FFFFFF"));
+                btHigh.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                btHigh.setTextColor(Color.parseColor("#E4E4E4"));
+                btmiddle.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                btmiddle.setTextColor(Color.parseColor("#E4E4E4"));
+            }
         });
     }
 
