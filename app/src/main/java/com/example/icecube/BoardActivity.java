@@ -44,7 +44,7 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
             @Override
             public void onClick(View v) {
                 mdialog =
-                        new mode_dialog(BoardActivity.this, R.layout.dialog_mode_layout, new mode_dialog.OnConfirmListener() {
+                        new mode_dialog(BoardActivity.this, R.layout.dialog_mode, new mode_dialog.OnConfirmListener() {
                             @Override
                             public void onConfirm() {
                                 if (mdialog != null) {
@@ -85,12 +85,12 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
                             }
                         }, new turbo_dialog.OnTurboListener() {
                             @Override
-                            public void onHigh() {
+                            public void onTurbo() {
 
                             }
                         }, new turbo_dialog.OnEcoListener() {
                             @Override
-                            public void onHigh() {
+                            public void onEco() {
 
                             }
                         });

@@ -51,22 +51,22 @@ public class mode_dialog extends Dialog {
 
     }
 
-    //点击取消对应的监听器
+    //点击对应的监听器
     public interface OnHighListener {
         void onHigh();
     }
 
-    //点击取消对应的监听器
+    //点击对应的监听器
     public interface OnmiddleListener {
         void onMiddle();
     }
 
-    //点击取消对应的监听器
+    //点击对应的监听器
     public interface OnLowListener {
         void onLow();
     }
 
-    //点击确定对应的监听器
+    //点击确定取消对应的监听器
     public interface OnConfirmListener {
         void onConfirm();
     }
