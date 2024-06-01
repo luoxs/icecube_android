@@ -62,11 +62,6 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
                             @SuppressLint("ResourceAsColor")
                             @Override
                             public void onHigh() {
-                               // com.google.android.material.button.MaterialButton bthigh = findViewById(R.id.bthigh);
-//                                LayoutInflater inflater = getLayoutInflater();
-//                                View dialogView = inflater.inflate(R.layout.dialog_mode, null);
-//                                bthigh = dialogView.findViewById(R.id.bthigh);
-                               // bthigh.setBackgroundColor(Color.RED);
                                 Log.v("high button ","high button clicked!------------");
                             }
                         }, new mode_dialog.OnmiddleListener() {

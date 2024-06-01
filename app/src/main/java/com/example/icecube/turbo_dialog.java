@@ -68,6 +68,7 @@ public class turbo_dialog extends Dialog {
             @Override
             public void onClick(View v) {
                 mConfirmListener.onConfirm();
+
             }
         });
 
@@ -75,12 +76,23 @@ public class turbo_dialog extends Dialog {
             @Override
             public void onClick(View v) {
                 mTurboistener.onTurbo();
+                btTurbo.setBackgroundColor(Color.parseColor("#0C3B95"));
+                btTurbo.setTextColor(Color.parseColor("#FFFFFF"));
+                btEco.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                btEco.setTextColor(Color.parseColor("#E4E4E4"));
+
             }
         });
 
         btEco.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {mEcoListener.onEco();}
+            public void onClick(View v) {
+                mEcoListener.onEco();
+                btEco.setBackgroundColor(Color.parseColor("#0C3B95"));
+                btEco.setTextColor(Color.parseColor("#FFFFFF"));
+                btTurbo.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                btTurbo.setTextColor(Color.parseColor("#E4E4E4"));
+            }
         });
     }
 
