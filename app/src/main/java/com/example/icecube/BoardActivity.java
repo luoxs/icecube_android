@@ -1,5 +1,6 @@
 package com.example.icecube;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -27,7 +28,10 @@ import me.jessyan.autosize.internal.CustomAdapt;
 public class BoardActivity extends AppCompatActivity implements CustomAdapt {
     private mode_dialog mdialog;
     private turbo_dialog tdialog;
+    private com.google.android.material.button.MaterialButton bthigh;
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +59,14 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
                                 }
                             }
                         }, new mode_dialog.OnHighListener() {
+                            @SuppressLint("ResourceAsColor")
                             @Override
                             public void onHigh() {
-                                v.setBackgroundResource(R.color.blue);
+                               // com.google.android.material.button.MaterialButton bthigh = findViewById(R.id.bthigh);
+//                                LayoutInflater inflater = getLayoutInflater();
+//                                View dialogView = inflater.inflate(R.layout.dialog_mode, null);
+//                                bthigh = dialogView.findViewById(R.id.bthigh);
+                               // bthigh.setBackgroundColor(Color.RED);
                                 Log.v("high button ","high button clicked!------------");
                             }
                         }, new mode_dialog.OnmiddleListener() {

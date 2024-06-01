@@ -40,7 +40,6 @@ public class mode_dialog extends Dialog {
 
     public mode_dialog(Context context, int layoutId, OnConfirmListener confirmListener, OnHighListener highListener,OnmiddleListener middleListener,OnLowListener lowListener) {
         super(context,R.style.Theme_IceCube);
-       // super(context, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog);
         mConfirmListener=confirmListener;
         mHighListener = highListener;
         mMiddleListener = middleListener;
