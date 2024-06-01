@@ -34,7 +34,7 @@ public class turbo_dialog extends Dialog {
     public turbo_dialog(Context context, int layoutId, OnConfirmListener confirmListener, OnTurboListener turboListener,OnEcoListener ecoListener) {
         super(context,R.style.Theme_IceCube);
         // super(context, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog);
-        mConfirmListener=confirmListener;
+        mConfirmListener = confirmListener;
         mTurboistener = turboListener;
         mEcoListener = ecoListener;
         mLayoutId=layoutId;
@@ -63,15 +63,6 @@ public class turbo_dialog extends Dialog {
         btTurbo = (Button) findViewById(R.id.btturbo);
         btEco = (Button) findViewById(R.id.bteco);
         mConfirm= (Button) findViewById(R.id.btcomfirm);
-
-        // 设置对话框样式，这里使用了无标题和透明的背景
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Objects.requireNonNull(getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        // 设置对话框外的背景变暗
-        WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-        layoutParams.dimAmount = 0.2f; // 设置背景变暗的程度，0.0表示不变暗，1.0表示全黑
-        getWindow().setAttributes(layoutParams);
 
         mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

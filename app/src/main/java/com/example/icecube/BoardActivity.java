@@ -2,10 +2,13 @@ package com.example.icecube;
 
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -68,6 +71,17 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
                                 Log.v("low button ","low button clicked!------------");
                             }
                         });
+                Window window = mdialog.getWindow();
+                if (window != null) {
+                    WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+                    layoutParams.copyFrom(window.getAttributes());
+                    // 设置背景半透明，这里的0.5f表示50%的透明度
+                    layoutParams.dimAmount = 0.7f;
+                    layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+                    window.setAttributes(layoutParams);
+                    // 可选：设置对话框窗口的背景为透明，这样对话框本身的背景也会是透明的
+                    window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                }
                 mdialog.show();
             }
         });
@@ -94,6 +108,20 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
 
                             }
                         });
+
+                Window window = tdialog.getWindow();
+                if (window != null) {
+                    WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+                    layoutParams.copyFrom(window.getAttributes());
+                    // 设置背景半透明，这里的0.5f表示50%的透明度
+                    layoutParams.dimAmount = 0.7f;
+                    layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+                    window.setAttributes(layoutParams);
+
+                    // 可选：设置对话框窗口的背景为透明，这样对话框本身的背景也会是透明的
+                    window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                }
+
                 tdialog.show();
             }
         });
