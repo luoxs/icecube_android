@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         btadd.setOnClickListener(view -> {
             Intent  intent = new Intent();
             intent.setClass(MainActivity.this, DeviceActivity.class);
+//            intent.setClass(MainActivity.this, PassActivity.class);
+
             startActivity(intent);
         });
     }

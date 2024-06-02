@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,8 +43,8 @@ import me.jessyan.autosize.internal.CustomAdapt;
 
 public class ScanActivity extends AppCompatActivity implements CustomAdapt {
 
-    private final UUID service4UUID = UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb");
-    private final UUID charAUUID = UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb");
+    private final UUID service4UUID = UUID.fromString("0000fee0-0000-1000-8000-00805f9b34fb");
+    private final UUID charAUUID = UUID.fromString("0000fee1-0000-1000-8000-00805f9b34fb");
     private ArrayList<String> arrayList;   //设备名列表
     private ArrayList<String> arrayMAC;    //设备地址列表
     private BluetoothClient mClient;
@@ -135,7 +136,7 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
                 // Beacon beacon = new Beacon(device.scanRecord);
                 // BluetoothLog.v(String.format("----beacon for %s\n%s", device.getAddress(), beacon.toString()));
                 Log.v("------found", device.getName());
-                if (device.getName().startsWith("IC")) {
+                if (device.getName().startsWith(brand)) {
                     prgbar.setVisibility(View.INVISIBLE);
                     if (!arrayList.contains(device.getName())) {
                         Toast.makeText(ScanActivity.this, "Device Found. you can connet it now!", Toast.LENGTH_SHORT).show();
@@ -274,20 +275,20 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
                     service = service4UUID;
                     character = charAUUID;
                     progressDialog.dismiss();
-                    Intent intent = new Intent();
-//                    intent.putExtra("MAC",arrayMAC.get(i));
-//                    intent.putExtra("brand",brand);
 
-                    SharedPreferences sp = getSharedPreferences("intentdata",MODE_PRIVATE);//获取
-                    SharedPreferences.Editor editor = sp.edit(); // 获取编辑器对象
-                    editor.putString("MAC",arrayMAC.get(i)); // 存入String类型数据
-                    editor.putString("brand",brand); // 存入int类型数据
-                    editor.putString("sn",arrayList.get(i));
-                    editor.commit(); // 提交数据
-
-                    intent.setClass(ScanActivity.this, BoardActivity.class);
-
-                    startActivity(intent);
+                    checkpass(arrayMAC.get(i));
+//
+//                    Intent intent = new Intent();
+//                    SharedPreferences sp = getSharedPreferences("intentdata",MODE_PRIVATE);//获取
+//                    SharedPreferences.Editor editor = sp.edit(); // 获取编辑器对象
+//                    editor.putString("MAC",arrayMAC.get(i)); // 存入String类型数据
+//                    editor.putString("brand",brand); // 存入int类型数据
+//                    editor.putString("sn",arrayList.get(i));
+//                    editor.commit(); // 提交数据
+//
+//                    intent.setClass(ScanActivity.this, BoardActivity.class);
+//
+//                    startActivity(intent);
                 } else if (code == REQUEST_FAILED) {
                     progressDialog.dismiss();
                 }
@@ -306,5 +307,32 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
             return false;
         }
         return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+    }
+
+    //看连接的设备是否有保存过的密码
+    private void checkpass(String mac) {
+        try {
+            SharedPreferences sharepre = getSharedPreferences("datafile", Context.MODE_PRIVATE);
+            String MacStr = sharepre.getString(mac, "");
+            if (MacStr != "") {
+                Intent intent = new Intent(ScanActivity.this, BoardActivity.class);
+                // intent.putExtra("devicename",arrayList.get(i));
+                intent.putExtra("mac", mac);
+                intent.putExtra("service", service);
+                intent.putExtra("character", character);
+                // mClient = null;
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(ScanActivity.this, PassActivity.class);
+                // intent.putExtra("devicename",arrayList.get(i));
+                intent.putExtra("mac", mac);
+                intent.putExtra("service", service);
+                intent.putExtra("character", character);
+                //    mClient = null;
+                startActivity(intent);
+            }
+        } catch (Exception e) {
+            Log.v("data store errr", e.toString());
+        }
     }
 }

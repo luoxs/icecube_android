@@ -56,8 +56,8 @@
         android:id="@+id/prgbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_marginTop="550dp"
-        android:layout_gravity="center_horizontal"
+         android:layout_marginTop="580dp"
+        android:layout_centerHorizontal="true"
         style="@style/Theme.AppCompat.NoActionBar"/>
 
 
