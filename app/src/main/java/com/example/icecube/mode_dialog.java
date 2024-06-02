@@ -96,6 +96,8 @@ public class mode_dialog extends Dialog {
                 btmiddle.setTextColor(Color.parseColor("#E4E4E4"));
                 btlow.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 btlow.setTextColor(Color.parseColor("#E4E4E4"));
+                mConfirm.setBackgroundColor(Color.parseColor("#0C3B95"));
+                mConfirm.setTextColor(Color.parseColor("#FFFFFF"));
             }
         });
 
@@ -110,6 +112,8 @@ public class mode_dialog extends Dialog {
                 btHigh.setTextColor(Color.parseColor("#E4E4E4"));
                 btlow.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 btlow.setTextColor(Color.parseColor("#E4E4E4"));
+                mConfirm.setBackgroundColor(Color.parseColor("#0C3B95"));
+                mConfirm.setTextColor(Color.parseColor("#FFFFFF"));
             }
         });
 
@@ -123,6 +127,8 @@ public class mode_dialog extends Dialog {
                 btHigh.setTextColor(Color.parseColor("#E4E4E4"));
                 btmiddle.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 btmiddle.setTextColor(Color.parseColor("#E4E4E4"));
+                mConfirm.setBackgroundColor(Color.parseColor("#0C3B95"));
+                mConfirm.setTextColor(Color.parseColor("#FFFFFF"));
             }
         });
     }

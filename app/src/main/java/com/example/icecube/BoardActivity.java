@@ -12,7 +12,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -21,14 +23,46 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.inuker.bluetooth.library.BluetoothClient;
+
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.UUID;
 
 import me.jessyan.autosize.internal.CustomAdapt;
 
 public class BoardActivity extends AppCompatActivity implements CustomAdapt {
+
+    private final UUID service4UUID = UUID.fromString("0000fee0-0000-1000-8000-00805f9b34fb");
+    private final UUID charAUUID = UUID.fromString("0000fee1-0000-1000-8000-00805f9b34fb");
+    private BluetoothClient mClient;
+    private String brand;
+    private String MAC;
+    private UUID service;
+    private UUID character;
+    private DataRead dataRead;
+
     private mode_dialog mdialog;
     private turbo_dialog tdialog;
-    private com.google.android.material.button.MaterialButton bthigh;
+
+    private  ImageButton bt_return;
+    private  ImageButton bt_power;
+    private ImageButton bt_unit;
+    private ImageView iv_back;
+    private TextView text_setting;
+    private ImageButton bt_minus;
+    private ImageButton bt_add;
+    private ImageButton bt_seafood;
+    private ImageButton bt_drink;
+    private ImageButton bt_ice;
+    private ImageButton bt_vagetable;
+    ImageButton btmode;
+    ImageButton btstatus;
+
+    private String a,b,c;   //密码
+    private int style;  //四种保鲜模式
+
+
 
     @Override
     public boolean isBaseOnWidth() {
@@ -47,15 +81,8 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
 
-        ImageButton btmode = findViewById(R.id.btmode);
-        ImageButton btstatus = findViewById(R.id.btstatus);
-
-        btmode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                
-            }
-        });
+       btmode = findViewById(R.id.btmode);
+       btstatus = findViewById(R.id.btstatus);
 
         btmode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +162,6 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
                     // 可选：设置对话框窗口的背景为透明，这样对话框本身的背景也会是透明的
                     window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 }
-
                 tdialog.show();
             }
         });
