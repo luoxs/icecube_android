@@ -8,7 +8,7 @@ android {
     compileSdk = 34
     defaultConfig {
         applicationId = "com.example.icecube"
-        minSdk = 28
+        minSdk = 25
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
