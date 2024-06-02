@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/blue" />
+
+    <TextView
+        android:layout_width="112dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="30dp"
+        android:text="Scan Device QR"
+        android:textColor="@color/white"
+        android:scaleType="fitXY" />
+
+    <ImageButton
+        android:id="@+id/btback"
+        android:layout_width="9dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/back" />
+
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/dbv_custom"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        app:zxing_preview_scaling_strategy="fitXY" />
+
+</RelativeLayout>
