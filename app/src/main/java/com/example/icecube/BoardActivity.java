@@ -30,6 +30,16 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
     private turbo_dialog tdialog;
     private com.google.android.material.button.MaterialButton bthigh;
 
+    @Override
+    public boolean isBaseOnWidth() {
+        return false;
+    }
+
+    @Override
+    public float getSizeInDp() {
+        return 0;
+    }
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -129,16 +139,6 @@ public class BoardActivity extends AppCompatActivity implements CustomAdapt {
                 tdialog.show();
             }
         });
-    }
-
-    @Override
-    public boolean isBaseOnWidth() {
-        return false;
-    }
-
-    @Override
-    public float getSizeInDp() {
-        return 0;
     }
 
 }
