@@ -74,7 +74,7 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
     //用于定时
     private Handler handler = new Handler();
     private Runnable runnable;
-    private int count = 0;
+    private int tag = 0;
     private boolean isRunning = true;
 
     @Override
@@ -88,23 +88,24 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
     }
 
     private void starttimer(){
-        if (!isRunning) {
             isRunning = true;
+            tag = 1;
             runnable = new Runnable() {
                 @Override
                 public void run() {
-                    count++;
                     getStatus();
+                    Log.v("momo","hello world------------");
                     handler.postDelayed(this, 5000); // 5000 milliseconds
                 }
             };
-        }
-        handler.postDelayed(runnable, 1000); // Initial delay
+            //handler.post(runnable);
+            handler.postDelayed(runnable,5000);
     }
 
     private  void stoptimer(){
         if (isRunning) {
             isRunning = false;
+            tag = 0;
             handler.removeCallbacks(runnable);
         }
     }
@@ -124,7 +125,8 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
         initController();  //初始化控件
         getPassword();//获取密码
         dataRead = new DataRead();
-        getStatus(); //获取冰箱状态
+       // getStatus(); //获取冰箱状态
+        starttimer();
 
         //点击电池模式按钮
         btmode.setOnClickListener(new View.OnClickListener() {
@@ -342,6 +344,7 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
 
     //获取冰箱状态
     public void getStatus() {
+        tag = 1;
         if ((service != null) && (character != null)) {
             byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
@@ -361,34 +364,48 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btback) {
+            stoptimer();
             setReturn();
         }
         if (view.getId() == R.id.btunit) {
+            stoptimer();
             setUnit();
         }
         if (view.getId() == R.id.btminus) {
+            stoptimer();
             setMinus();
         }
         if (view.getId() == R.id.btadd) {
+            stoptimer();
             setAdd();
         }
         if (view.getId() == R.id.btfresh) {
+            stoptimer();
             setSeafood();
         }
         if (view.getId() == R.id.btdrink) {
+            stoptimer();
             setDrink();
         }
         if (view.getId() == R.id.bticecream) {
+            stoptimer();
             setIce();
         }
         if (view.getId() == R.id.btfruit) {
+            stoptimer();
             setVagetable();
         }
         if (view.getId() == R.id.btpower) {
+            stoptimer();
             setPower();
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+    }
 
     //返回
     public void setReturn() {
@@ -416,8 +433,11 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
     @Override
     public void onNotify(UUID service, UUID character, byte[] value) {
         Log.v("notify", "recieve notify!");
-        updateStatus(value);
-        starttimer();
+        if(tag==1){
+            updateReal(value);
+        }else{
+            updateStatus(value);
+        }
     }
 
     //开机关机
@@ -489,7 +509,6 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
 
     //温度加
     public void setAdd() {
-        stoptimer();
         int setting = dataRead.getTempSetting();
         setting++;
 
@@ -647,7 +666,7 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
         //关机
         if (dataRead.getPower() == 0) {
             bt_unit.setImageResource(R.drawable.ceils);
-            iv_back.setImageResource(R.drawable.center);
+            iv_back.setImageResource(R.drawable.center1);
             bt_seafood.setImageResource(R.drawable.fresh);
             bt_drink.setImageResource(R.drawable.drink);
             bt_ice.setImageResource(R.drawable.icecream);
@@ -688,12 +707,6 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
                     break;
             }
 
-            //实际温度显示
-            if (scale == 0) {//华氏
-                text_setting.setText("Current: " + Math.round((real * 1.8 + 32)) + "℉");
-            } else {  //摄氏
-                text_setting.setText("Current: " + real + "°C");
-            }
             progressBar.setProgress(setting);
 
             if (scale == 0) {//华氏
@@ -702,6 +715,29 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
                 text_setting.setText(String.valueOf(setting) + "°C");
             }
             // slidetem = String.valueOf(setting);
+        }
+
+        if(!isRunning){
+            starttimer();
+        }
+    }
+
+    public void updateReal(byte[] data) {
+        Log.v("---update", "successfully!");
+        if (data.length == 22) {
+            dataRead.setData(data);
+        } else {
+            return;
+        }
+        int real = dataRead.getTempReal();  //实时温度
+        if (real > 127) real -= 256;
+        int scale = dataRead.getUnit();  //单位
+        if(scale == 0){
+            bt_unit.setImageResource(R.drawable.fahre);
+            text_setting.setText( Math.round((real * 1.8 + 32)) + "℉");
+        }else{
+            bt_unit.setImageResource(R.drawable.ceils);
+            text_setting.setText(  real + "°C");
         }
     }
 }

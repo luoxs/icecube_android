@@ -39,7 +39,15 @@
         android:indeterminateDuration="@integer/material_motion_duration_short_1" />
     <!--android:indeterminateDrawable="@drawable/progressbar_style"-->
 
-
+    <TextView
+        android:layout_width="688dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
+        android:lines="2"
+        android:textAlignment="center"
+        android:text="Пожалуйста, введите символы, \nуказанные на дисплее холодильника"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="430dp"
@@ -99,21 +107,8 @@
             android:text=""
             android:textColor="#000000"
             android:textSize="24sp" />
-
-
-
     </LinearLayout>
 
 
-
-    <TextView
-        android:layout_width="688dp"
-        android:layout_height="108dp"
-        android:layout_marginTop="500dp"
-        android:layout_centerHorizontal="true"
-        android:lines="3"
-        android:textAlignment="center"
-        android:text="Please enter the three-digit combination\nof numbers/letters displayed onth\ncooler/'s LED screen.[0~9,A~F"
-        android:textSize="20sp" />
 
 </RelativeLayout>
