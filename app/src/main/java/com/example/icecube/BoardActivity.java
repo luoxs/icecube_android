@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -243,6 +244,19 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
                     window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 }
                 tdialog.show();
+            }
+        });
+
+        Button btsite = findViewById(R.id.btsite);
+        btsite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://icecube.ru";
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(url);
+                intent.setData(content_url);
+                startActivity(intent);
             }
         });
     }

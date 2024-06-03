@@ -47,13 +47,18 @@
         android:layout_height="0dp"
         android:layout_weight="275"/>
 
-    <TextView
+    <Button
+        android:id="@+id/btsite"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="82"
-        android:text="www.icecube.ru"
-        android:textColor="@color/black"
+        android:layout_weight="150"
+        android:layout_marginTop="20dp"
+        android:text="@string/www_icecube_ru"
         android:textSize="20sp"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"/>
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:backgroundTint="@color/white"
+        android:textColor="#4963A7"
+        android:textAllCaps="false" />
+
 </LinearLayout>

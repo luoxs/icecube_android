@@ -15,10 +15,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -104,17 +106,19 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
             String[] permission = {"android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"};
             ActivityCompat.requestPermissions(this, permission, 1);
         }
-//
-//        //返回按钮
-//        ImageButton btback = findViewById(R.id.btback);
-//        btback.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.setClass(ScanActivity.this, LogoActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
+        Button btsite = findViewById(R.id.btsite);
+        btsite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://icecube.ru";
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(url);
+                intent.setData(content_url);
+                startActivity(intent);
+            }
+        });
 
         mClient = MybluetoothClient.getInstance(getApplicationContext());
         SearchRequest request = new SearchRequest.Builder()

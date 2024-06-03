@@ -85,6 +85,7 @@
         android:scaleType="fitCenter"/>
 
     <Button
+        android:id="@+id/btsite"
         android:backgroundTint="@color/white"
         android:layout_width="200dp"
         android:layout_height="50dp"
