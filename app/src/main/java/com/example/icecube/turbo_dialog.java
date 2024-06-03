@@ -80,6 +80,8 @@ public class turbo_dialog extends Dialog {
                 btTurbo.setTextColor(Color.parseColor("#FFFFFF"));
                 btEco.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 btEco.setTextColor(Color.parseColor("#E4E4E4"));
+                mConfirm.setBackgroundColor(Color.parseColor("#0C3B95"));
+                mConfirm.setTextColor(Color.parseColor("#FFFFFF"));
 
             }
         });
@@ -92,6 +94,8 @@ public class turbo_dialog extends Dialog {
                 btEco.setTextColor(Color.parseColor("#FFFFFF"));
                 btTurbo.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 btTurbo.setTextColor(Color.parseColor("#E4E4E4"));
+                mConfirm.setBackgroundColor(Color.parseColor("#0C3B95"));
+                mConfirm.setTextColor(Color.parseColor("#FFFFFF"));
             }
         });
     }

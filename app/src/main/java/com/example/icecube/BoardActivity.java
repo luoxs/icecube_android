@@ -96,7 +96,7 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
         dataRead = new DataRead();
         getStatus(); //获取冰箱状态
 
-
+        //点击电池模式按钮
         btmode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,7 +181,7 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
                 mdialog.show();
             }
         });
-
+        //点击电池保护模式
         btstatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -339,7 +339,6 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
         if(view.getId() == R.id.btfruit){
             setVagetable();
         }
-
         if(view.getId() == R.id.btpower){
             setPower();
         }
@@ -475,11 +474,11 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
         }else{
             style = 0;
         }
-        iv_back.setImageResource(R.drawable.backfresh);
-        bt_seafood.setBackground(getDrawable(R.drawable.fresh1));
-        bt_drink.setBackground(getDrawable(R.drawable.drink));
-        bt_ice.setBackground(getDrawable(R.drawable.icecream));
-        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
+//        iv_back.setImageResource(R.drawable.backfresh);
+//        bt_seafood.setBackground(getDrawable(R.drawable.fresh1));
+//        bt_drink.setBackground(getDrawable(R.drawable.drink));
+//        bt_ice.setBackground(getDrawable(R.drawable.icecream));
+//        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
 
         if( (service!= null) && (character!=null)){
             byte []write = new byte[8];
@@ -507,11 +506,11 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
         }else{
             style = 0;
         }
-        iv_back.setImageResource(R.drawable.backdrink);
-        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-        bt_drink.setBackground(getDrawable(R.drawable.drink1));
-        bt_ice.setBackground(getDrawable(R.drawable.icecream));
-        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
+//        iv_back.setImageResource(R.drawable.backdrink);
+//        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
+//        bt_drink.setBackground(getDrawable(R.drawable.drink1));
+//        bt_ice.setBackground(getDrawable(R.drawable.icecream));
+//        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
 
         if( (service!= null) && (character!=null)){
             byte []write = new byte[8];
@@ -540,11 +539,11 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
         }else{
             style = 0;
         }
-        iv_back.setImageResource(R.drawable.backicecream);
-        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-        bt_drink.setBackground(getDrawable(R.drawable.drink));
-        bt_ice.setBackground(getDrawable(R.drawable.icecream1));
-        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
+//        iv_back.setImageResource(R.drawable.backicecream);
+//        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
+//        bt_drink.setBackground(getDrawable(R.drawable.drink));
+//        bt_ice.setBackground(getDrawable(R.drawable.icecream1));
+//        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
 
         if( (service!= null) && (character!=null)){
             byte []write = new byte[8];
@@ -573,11 +572,11 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
         }else{
             style = 0;
         }
-        iv_back.setImageResource(R.drawable.backfruit);
-        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-        bt_drink.setBackground(getDrawable(R.drawable.drink));
-        bt_ice.setBackground(getDrawable(R.drawable.icecream));
-        bt_vagetable.setBackground(getDrawable(R.drawable.fruit1));
+//        iv_back.setImageResource(R.drawable.backfruit);
+//        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
+//        bt_drink.setBackground(getDrawable(R.drawable.drink));
+//        bt_ice.setBackground(getDrawable(R.drawable.icecream));
+//        bt_vagetable.setBackground(getDrawable(R.drawable.fruit1));
 
         if( (service!= null) && (character!=null)){
             byte []write = new byte[8];
@@ -614,18 +613,17 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
         int frose = dataRead.getFroseSetinng(); //冷藏设定
 
         if(setting>127)  setting -= 256;
-        if(frose>127) frose -= 256;
+
         if(real>127) real -= 256;
 
         //关机
         if(dataRead.getPower() == 0){
-
             bt_unit.setBackground(getDrawable(R.drawable.ceils));
             iv_back.setImageResource(R.drawable.center);
-            bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-            bt_drink.setBackground(getDrawable(R.drawable.drink));
-            bt_ice.setBackground(getDrawable(R.drawable.icecream));
-            bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
+            bt_seafood.setImageResource(R.drawable.fresh);
+            bt_drink.setImageResource(R.drawable.drink);
+            bt_ice.setImageResource(R.drawable.icecream);
+            bt_vagetable.setImageResource(R.drawable.fruit);
             text_setting.setText("0°C");
             text_setting.setTextColor(Color.WHITE);
         }else{
@@ -639,26 +637,27 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
             switch (style){
                 case 1:
                     iv_back.setImageResource(R.drawable.backfresh);
-                    bt_seafood.setBackground(getDrawable(R.drawable.fresh1));
+                    bt_seafood.setImageResource(R.drawable.fresh1);
                     break;
                 case 2:
                     iv_back.setImageResource(R.drawable.backdrink);
-                    bt_drink.setBackground(getDrawable(R.drawable.drink1));
+                    bt_drink.setImageResource(R.drawable.drink1);
                     break;
                 case 3:
                     iv_back.setImageResource(R.drawable.backicecream);
-                    bt_ice.setBackground(getDrawable(R.drawable.icecream1));
+                    bt_ice.setImageResource(R.drawable.icecream1);
                     break;
                 case 4:
                     iv_back.setImageResource(R.drawable.backfruit);
-                    bt_vagetable.setBackground(getDrawable(R.drawable.fruit1));
+                    bt_vagetable.setImageResource(R.drawable.fruit1);
                     break;
                 default:
-                    iv_back.setImageResource(R.drawable.center);
-                    bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-                    bt_drink.setBackground(getDrawable(R.drawable.drink));
-                    bt_ice.setBackground(getDrawable(R.drawable.icecream));
-                    bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
+//                    iv_back.setImageResource(R.drawable.center);
+//                   // bt_seafood.setBackground(getDrawable(R.drawable.fresh));
+//                    bt_seafood.setImageResource(R.drawable.fresh);
+//                    bt_drink.setBackground(getDrawable(R.drawable.drink));
+//                    bt_ice.setBackground(getDrawable(R.drawable.icecream));
+//                    bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
                     break;
             }
 
@@ -692,215 +691,4 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
 
         }
     }
-
-    //设置电池模式和冰箱选择
-    public void  setMode(){
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-
-        View dialogView = new View(this);
-        Button bt_low = new Button(this);
-        Button bt_middle = new Button(this) ;
-        Button bt_high = new Button(this);
-        Button bt_left = new Button(this);
-        Button bt_right = new Button(this);
-        ImageView iv_bingxiangleft = new ImageView(this);
-        ImageView iv_bingxiangright = new ImageView(this);
-        Button btconfirm = new Button(this);
-
-//        //双冰箱
-//        if(dataRead.getType()==0x09 || dataRead.getType() == 0x0a || dataRead.getType() == 0x04){
-//            dialogView= LayoutInflater.from(this)
-//                    .inflate(R.layout.mbottomladouble, null);
-//            bottomSheetDialog.setContentView(dialogView);
-//            bottomSheetDialog.setCancelable(false);
-//
-//            bt_low = bottomSheetDialog.findViewById(R.id.btlow);
-//            bt_middle =  bottomSheetDialog.findViewById(R.id.btmiddle);
-//            bt_high =  bottomSheetDialog.findViewById(R.id.bthight);
-//            bt_left = bottomSheetDialog.findViewById(R.id.btleft);
-//            bt_right = bottomSheetDialog.findViewById(R.id.btright);
-//            iv_bingxiangleft = bottomSheetDialog.findViewById(R.id.juxingkuangleft);
-//            iv_bingxiangright = bottomSheetDialog.findViewById(R.id.juxingkuangright);
-//            btconfirm = bottomSheetDialog.findViewById(R.id.mbtconfirm);
-//        }
-//
-//        //单冰箱
-//        if(dataRead.getType()==0x07 || dataRead.getType() == 0x08){
-//            dialogView = LayoutInflater.from(this)
-//                    .inflate(R.layout.mbottomsingle, null);
-//            bt_low = bottomSheetDialog.findViewById(R.id.btlow1);
-//            bt_middle =  bottomSheetDialog.findViewById(R.id.btmiddle1);
-//            bt_high =  bottomSheetDialog.findViewById(R.id.bthight1);
-//            btconfirm = bottomSheetDialog.findViewById(R.id.mbtconfirm1);
-//        }
-//
-//        Button finalBt_low = bt_low;
-//        Button finalBt_middle = bt_middle;
-//        Button finalBt_high = bt_high;
-//
-//        finalBt_low.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finalBt_low.setBackgroundResource(R.drawable.btn_of_dialog1);
-//                finalBt_middle.setBackgroundResource(R.drawable.btn_of_dialog);
-//                finalBt_high.setBackgroundResource(R.drawable.btn_of_dialog);
-//                setBattery(0);
-//            }
-//        });
-//
-//        assert finalBt_middle != null;
-//        finalBt_middle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finalBt_low.setBackgroundResource(R.drawable.btn_of_dialog);
-//                finalBt_middle.setBackgroundResource(R.drawable.btn_of_dialog1);
-//                finalBt_high.setBackgroundResource(R.drawable.btn_of_dialog);
-//                setBattery(1);
-//            }
-//        });
-//
-//        assert finalBt_high != null;
-//        finalBt_high.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finalBt_low.setBackgroundResource(R.drawable.btn_of_dialog);
-//                finalBt_middle.setBackgroundResource(R.drawable.btn_of_dialog);
-//                finalBt_high.setBackgroundResource(R.drawable.btn_of_dialog1);
-//                setBattery(2);
-//            }
-//        });
-//
-//        ImageView finalIv_bingxiangleft = iv_bingxiangleft;
-//        ImageView finalIv_bingxiangright = iv_bingxiangright;
-//        Button finalBt_left = bt_left;
-//        Button finalBt_right = bt_right;
-//        bt_left.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finalBt_left.setBackgroundResource(R.drawable.btn_of_dialog1);
-//                finalBt_right.setBackgroundResource(R.drawable.btn_of_dialog);
-//                finalIv_bingxiangleft.setVisibility(View.VISIBLE);
-//                finalIv_bingxiangright.setVisibility(View.INVISIBLE);
-//                oreition = 0;
-//            }
-//        });
-//
-//        bt_right.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finalBt_left.setBackgroundResource(R.drawable.btn_of_dialog);
-//                finalBt_right.setBackgroundResource(R.drawable.btn_of_dialog1);
-//                finalIv_bingxiangleft.setVisibility(View.INVISIBLE);
-//                finalIv_bingxiangright.setVisibility(View.VISIBLE);
-//                oreition = 1;
-//            }
-//        });
-//
-//        assert btconfirm != null;
-//        btconfirm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                bottomSheetDialog.dismiss();
-//            }
-//        });
-//        bottomSheetDialog.show();
-    }
-
-    /**
-     * 设置电池保护模式
-     * @param scale：0，低电量，1，中电量，2高电量
-     */
-//    public  void  setBattery(int scale){
-//        if( (service!= null) && (character!=null)){
-//            byte []write = new byte[8];
-//            write[0] = (byte) 0xAA;
-//            write[1] = 0x07;
-//            write[2] = (byte) scale;
-//            write[3] = (byte) Integer.parseInt(a,16);
-//            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-//            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-//            int x =  utilCRC.alex_crc16(bytein,4);
-//            write[6] = (byte) (0xFF & x);
-//            write[5] = (byte) (0xFF&(x>>8));
-//            write[7] = 0x55;
-//            mClient.write(MAC, service, character, write, BoardActivity.this);
-//        }
-//    }
-
-    /**
-     * 设置节能模式:eco,或高级模式:turbo
-     */
-//    public void setTurbo(){
-//        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-//        View dialogView= LayoutInflater.from(this)
-//                .inflate(R.layout.tbottomlayout, null);
-//        bottomSheetDialog.setContentView(dialogView);
-//        bottomSheetDialog.setCancelable(false);
-//        Button bt_Turbo = bottomSheetDialog.findViewById(R.id.btturbo);
-//        Button bt_Eco = bottomSheetDialog.findViewById(R.id.bteco);
-//        assert bt_Turbo != null;
-//        bt_Turbo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                bt_Turbo.setBackgroundResource(R.drawable.btn_of_dialog1);
-//                bt_Eco.setBackgroundResource(R.drawable.btn_of_dialog);
-//                if( (service!= null) && (character!=null)){
-//                    byte []write = new byte[8];
-//                    write[0] = (byte) 0xAA;
-//                    write[1] = 0x05;
-//                    write[2] = 0x01;
-//                    write[3] = (byte) Integer.parseInt(a,16);
-//                    write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-//                    byte[]  bytein = {write[1],write[2],write[3],write[4]};
-//                    int x =  utilCRC.alex_crc16(bytein,4);
-//                    write[6] = (byte) (0xFF & x);
-//                    write[5] = (byte) (0xFF&(x>>8));
-//                    write[7] = 0x55;
-//                    mClient.write(MAC, service, character, write, BoardActivity.this);
-//                }
-//            }
-//        });
-//
-//        bt_Eco.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                bt_Turbo.setBackgroundResource(R.drawable.btn_of_dialog);
-//                bt_Eco.setBackgroundResource(R.drawable.btn_of_dialog1);
-//                if( (service!= null) && (character!=null)){
-//                    byte []write = new byte[8];
-//                    write[0] = (byte) 0xAA;
-//                    write[1] = 0x05;
-//                    write[2] = 0x00;
-//                    write[3] = (byte) Integer.parseInt(a,16);
-//                    write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-//                    byte[]  bytein = {write[1],write[2],write[3],write[4]};
-//                    int x =  utilCRC.alex_crc16(bytein,4);
-//                    write[6] = (byte) (0xFF & x);
-//                    write[5] = (byte) (0xFF&(x>>8));
-//                    write[7] = 0x55;
-//                    mClient.write(MAC, service, character, write, BoardActivity.this);
-//                }
-//            }
-//        });
-//
-//        Button bt_Confirm = bottomSheetDialog.findViewById(R.id.btconfirm);
-//        bt_Confirm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                bottomSheetDialog.dismiss();
-//            }
-//        });
-//        bottomSheetDialog.setContentView(dialogView);
-//        bottomSheetDialog.show();
-//    }
-
-
-//
-//    @Override
-//    public void onNotify(UUID service, UUID character, byte[] value) {
-//    }
-//
-//    @Override
-//    public void onResponse(int code) {
-//    }
 }
