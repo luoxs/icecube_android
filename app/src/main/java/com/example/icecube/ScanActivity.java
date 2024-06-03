@@ -66,7 +66,7 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
     }
     @Override
     public float getSizeInDp() {
-        return 0;
+        return 812;
     }
 
     @Override
