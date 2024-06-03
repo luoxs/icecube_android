@@ -130,12 +130,8 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
 
                 try {
                     Log.v("password", "saved!");
-                    //  SharedPreferences sharedPre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
-                    //SharedPreferences.Editor editor = sharedPre.edit();
-                    // editor.putString(MAC, passstr);
-                    // editor.apply();
 
-                    SharedPreferences.Editor editor = PassActivity.this.getSharedPreferences("datafile", MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = PassActivity.this.getSharedPreferences("myfile", MODE_PRIVATE).edit();
                     editor.putString("device", MAC);
                     editor.putString(MAC, passstr);
                     editor.apply();
@@ -185,6 +181,16 @@ public class PassActivity extends AppCompatActivity implements BleNotifyResponse
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+        if(view.getId() == R.id.password1){
+            pass1.setText(null);
+        }
+        if(view.getId() == R.id.password2){
+            pass2.setText(null);
+        }
+        if(view.getId() == R.id.password3){
+            pass3.setText(null);
+        }
+
 //        switch (view.getId()) {
 //            case R.id.password1:
 //                pass1.setText(null);

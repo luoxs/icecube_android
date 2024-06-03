@@ -24,6 +24,7 @@
         android:layout_marginRight="75dp"
         android:background="#888888" />
     <ImageButton
+        android:id="@+id/imageback"
         android:layout_width="560dp"
         android:layout_height="560dp"
         android:layout_centerHorizontal="true"

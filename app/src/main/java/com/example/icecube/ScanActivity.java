@@ -312,7 +312,7 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
     //看连接的设备是否有保存过的密码
     private void checkpass(String mac) {
         try {
-            SharedPreferences sharepre = getSharedPreferences("datafile", Context.MODE_PRIVATE);
+            SharedPreferences sharepre = getSharedPreferences("myfile", Context.MODE_PRIVATE);
             String MacStr = sharepre.getString(mac, "");
             if (MacStr != "") {
                 Intent intent = new Intent(ScanActivity.this, BoardActivity.class);

@@ -51,4 +51,13 @@
     <string name="ic43">IC43</string>
     <string name="ic63">IC63</string>
     <string name="www_icecube_ru">www.icecube.ru</string>
+
+    <string name="title_home">Shop</string>
+    <string name="title_dashboard">Devices</string>
+    <string name="title_notifications">Mine</string>
+    <string name="filekey">myfile</string>
+    <string name="MACkey">mackey</string>
+    <string name="serviceKey">servicekey</string>
+    <string name="characterKey">characterkey</string>
+    <string name="pass">password</string>
 </resources>
