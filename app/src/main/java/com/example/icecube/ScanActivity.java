@@ -200,8 +200,8 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
                         connect(which);
                     }
                 })
-
-                .setNeutralButton("cancel", new DialogInterface.OnClickListener() {
+                  //cancel翻译
+                .setNeutralButton("Отменить", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
