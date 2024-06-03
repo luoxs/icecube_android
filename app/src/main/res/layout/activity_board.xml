@@ -163,10 +163,12 @@
             android:background="#FFFFFF"/>
 
         <ProgressBar
+            android:id="@+id/progresstemp"
             android:layout_width="0dp"
             android:layout_weight="488"
-            android:max="100"
-            android:progress="30"
+            android:max="10"
+            android:min="-20"
+            android:progress="4"
             android:progressTint="@color/blue"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_height="match_parent"/>

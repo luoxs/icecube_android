@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -39,20 +40,20 @@ import java.util.UUID;
 
 import me.jessyan.autosize.internal.CustomAdapt;
 
-public class BoardActivity extends AppCompatActivity implements  android.view.View.OnClickListener, BleWriteResponse,BleNotifyResponse,CustomAdapt  {
+public class BoardActivity extends AppCompatActivity implements android.view.View.OnClickListener, BleWriteResponse, BleNotifyResponse, CustomAdapt {
 
     private final UUID service4UUID = UUID.fromString("0000fee0-0000-1000-8000-00805f9b34fb");
     private final UUID charAUUID = UUID.fromString("0000fee1-0000-1000-8000-00805f9b34fb");
+    ImageButton btmode;
+    ImageButton btstatus;
     private BluetoothClient mClient;
     private String brand;
     private String MAC;
     private UUID service;
     private UUID character;
     private DataRead dataRead;
-
     private mode_dialog mdialog;
     private turbo_dialog tdialog;
-
     private ImageButton bt_return;
     private ImageButton bt_power;
     private ImageButton bt_unit;
@@ -64,9 +65,7 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
     private ImageButton bt_drink;
     private ImageButton bt_ice;
     private ImageButton bt_vagetable;
-    ImageButton btmode;
-    ImageButton btstatus;
-
+    private ProgressBar progressBar;
     private String a, b, c;   //密码
     private int style;  //四种保鲜模式
 
@@ -113,17 +112,17 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
                             @Override
                             public void onHigh() {
                                 Log.v("high button ", "high button clicked!------------");
-                                if( (service!= null) && (character!=null)){
-                                    byte []write = new byte[8];
+                                if ((service != null) && (character != null)) {
+                                    byte[] write = new byte[8];
                                     write[0] = (byte) 0xAA;
                                     write[1] = 0x07;
                                     write[2] = 0x02;
-                                    write[3] = (byte) Integer.parseInt(a,16);
-                                    write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-                                    byte[]  bytein = {write[1],write[2],write[3],write[4]};
-                                    int x =  utilCRC.alex_crc16(bytein,4);
+                                    write[3] = (byte) Integer.parseInt(a, 16);
+                                    write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+                                    byte[] bytein = {write[1], write[2], write[3], write[4]};
+                                    int x = utilCRC.alex_crc16(bytein, 4);
                                     write[6] = (byte) (0xFF & x);
-                                    write[5] = (byte) (0xFF&(x>>8));
+                                    write[5] = (byte) (0xFF & (x >> 8));
                                     write[7] = 0x55;
                                     mClient.write(MAC, service, character, write, BoardActivity.this);
                                 }
@@ -132,17 +131,17 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
                             @Override
                             public void onMiddle() {
                                 Log.v("middle button ", "middle button clicked!------------");
-                                if( (service!= null) && (character!=null)){
-                                    byte []write = new byte[8];
+                                if ((service != null) && (character != null)) {
+                                    byte[] write = new byte[8];
                                     write[0] = (byte) 0xAA;
                                     write[1] = 0x07;
                                     write[2] = 0x01;
-                                    write[3] = (byte) Integer.parseInt(a,16);
-                                    write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-                                    byte[]  bytein = {write[1],write[2],write[3],write[4]};
-                                    int x =  utilCRC.alex_crc16(bytein,4);
+                                    write[3] = (byte) Integer.parseInt(a, 16);
+                                    write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+                                    byte[] bytein = {write[1], write[2], write[3], write[4]};
+                                    int x = utilCRC.alex_crc16(bytein, 4);
                                     write[6] = (byte) (0xFF & x);
-                                    write[5] = (byte) (0xFF&(x>>8));
+                                    write[5] = (byte) (0xFF & (x >> 8));
                                     write[7] = 0x55;
                                     mClient.write(MAC, service, character, write, BoardActivity.this);
                                 }
@@ -151,17 +150,17 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
                             @Override
                             public void onLow() {
                                 Log.v("low button ", "low button clicked!------------");
-                                if( (service!= null) && (character!=null)){
-                                    byte []write = new byte[8];
+                                if ((service != null) && (character != null)) {
+                                    byte[] write = new byte[8];
                                     write[0] = (byte) 0xAA;
                                     write[1] = 0x07;
                                     write[2] = 0x00;
-                                    write[3] = (byte) Integer.parseInt(a,16);
-                                    write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-                                    byte[]  bytein = {write[1],write[2],write[3],write[4]};
-                                    int x =  utilCRC.alex_crc16(bytein,4);
+                                    write[3] = (byte) Integer.parseInt(a, 16);
+                                    write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+                                    byte[] bytein = {write[1], write[2], write[3], write[4]};
+                                    int x = utilCRC.alex_crc16(bytein, 4);
                                     write[6] = (byte) (0xFF & x);
-                                    write[5] = (byte) (0xFF&(x>>8));
+                                    write[5] = (byte) (0xFF & (x >> 8));
                                     write[7] = 0x55;
                                     mClient.write(MAC, service, character, write, BoardActivity.this);
                                 }
@@ -196,17 +195,17 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
                         }, new turbo_dialog.OnTurboListener() {
                             @Override
                             public void onTurbo() {
-                                if( (service!= null) && (character!=null)){
-                                    byte []write = new byte[8];
+                                if ((service != null) && (character != null)) {
+                                    byte[] write = new byte[8];
                                     write[0] = (byte) 0xAA;
                                     write[1] = 0x05;
                                     write[2] = 0x01;
-                                    write[3] = (byte) Integer.parseInt(a,16);
-                                    write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-                                    byte[]  bytein = {write[1],write[2],write[3],write[4]};
-                                    int x =  utilCRC.alex_crc16(bytein,4);
+                                    write[3] = (byte) Integer.parseInt(a, 16);
+                                    write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+                                    byte[] bytein = {write[1], write[2], write[3], write[4]};
+                                    int x = utilCRC.alex_crc16(bytein, 4);
                                     write[6] = (byte) (0xFF & x);
-                                    write[5] = (byte) (0xFF&(x>>8));
+                                    write[5] = (byte) (0xFF & (x >> 8));
                                     write[7] = 0x55;
                                     mClient.write(MAC, service, character, write, BoardActivity.this);
                                 }
@@ -214,17 +213,17 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
                         }, new turbo_dialog.OnEcoListener() {
                             @Override
                             public void onEco() {
-                                if( (service!= null) && (character!=null)){
-                                    byte []write = new byte[8];
+                                if ((service != null) && (character != null)) {
+                                    byte[] write = new byte[8];
                                     write[0] = (byte) 0xAA;
                                     write[1] = 0x05;
                                     write[2] = 0x00;
-                                    write[3] = (byte) Integer.parseInt(a,16);
-                                    write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-                                    byte[]  bytein = {write[1],write[2],write[3],write[4]};
-                                    int x =  utilCRC.alex_crc16(bytein,4);
+                                    write[3] = (byte) Integer.parseInt(a, 16);
+                                    write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+                                    byte[] bytein = {write[1], write[2], write[3], write[4]};
+                                    int x = utilCRC.alex_crc16(bytein, 4);
                                     write[6] = (byte) (0xFF & x);
-                                    write[5] = (byte) (0xFF&(x>>8));
+                                    write[5] = (byte) (0xFF & (x >> 8));
                                     write[7] = 0x55;
                                     mClient.write(MAC, service, character, write, BoardActivity.this);
                                 }
@@ -271,6 +270,7 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
         bt_ice = findViewById(R.id.bticecream);
         bt_vagetable = findViewById(R.id.btfruit);
         bt_power = findViewById(R.id.btpower);
+        progressBar = findViewById(R.id.progresstemp);
 
         bt_return.setOnClickListener(this);
         bt_unit.setOnClickListener(this);
@@ -316,45 +316,45 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.btback){
+        if (view.getId() == R.id.btback) {
             setReturn();
         }
-        if(view.getId() == R.id.btunit){
+        if (view.getId() == R.id.btunit) {
             setUnit();
         }
-        if(view.getId() == R.id.btminus){
+        if (view.getId() == R.id.btminus) {
             setMinus();
         }
-        if(view.getId() == R.id.btadd){
+        if (view.getId() == R.id.btadd) {
             setAdd();
         }
-        if(view.getId() == R.id.btfresh){
+        if (view.getId() == R.id.btfresh) {
             setSeafood();
         }
-        if(view.getId() == R.id.btdrink){
+        if (view.getId() == R.id.btdrink) {
             setDrink();
         }
-        if(view.getId() == R.id.bticecream){
+        if (view.getId() == R.id.bticecream) {
             setIce();
         }
-        if(view.getId() == R.id.btfruit){
+        if (view.getId() == R.id.btfruit) {
             setVagetable();
         }
-        if(view.getId() == R.id.btpower){
+        if (view.getId() == R.id.btpower) {
             setPower();
         }
     }
 
 
     //返回
-    public void setReturn(){
+    public void setReturn() {
         SharedPreferences sharedPref = BoardActivity.this.getSharedPreferences(getString(R.string.filekey), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.MACkey), "");
         editor.putString(getString(R.string.serviceKey), service.toString());
         editor.putString(getString(R.string.characterKey), character.toString());
         editor.apply();
-        Intent intent = new Intent(BoardActivity.this,MainActivity.class);
+        Intent intent = new Intent(BoardActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -371,97 +371,97 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
     //收到设备返回通知
     @Override
     public void onNotify(UUID service, UUID character, byte[] value) {
-        Log.v("notify","recieve notify!");
+        Log.v("notify", "recieve notify!");
         updateStatus(value);
     }
 
     //开机关机
-    public void setPower(){
-        Log.v("power","power clicked");
+    public void setPower() {
+        Log.v("power", "power clicked");
         byte powerstatus = dataRead.getPower();
-        if(powerstatus == 0x00) {
+        if (powerstatus == 0x00) {
             powerstatus = 0x01;
-        }else{
-            powerstatus =0x00;
+        } else {
+            powerstatus = 0x00;
         }
-        if( (service!= null) && (character!=null)){
-            byte []write = new byte[8];
+        if ((service != null) && (character != null)) {
+            byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
             write[1] = 0x02;
             write[2] = powerstatus;
-            write[3] = (byte) Integer.parseInt(a,16);
-            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-            int x =  utilCRC.alex_crc16(bytein,4);
+            write[3] = (byte) Integer.parseInt(a, 16);
+            write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+            byte[] bytein = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytein, 4);
             write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF&(x>>8));
+            write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
             mClient.write(MAC, service, character, write, this);
         }
     }
 
     //设置单位
-    public void  setUnit(){
+    public void setUnit() {
         int scale = dataRead.getUnit();
-        if( (service!= null) && (character!=null)){
-            byte []write = new byte[8];
+        if ((service != null) && (character != null)) {
+            byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
             write[1] = 0x08;
             write[2] = (byte) scale;
-            write[3] = (byte) Integer.parseInt(a,16);
-            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-            int x =  utilCRC.alex_crc16(bytein,4);
+            write[3] = (byte) Integer.parseInt(a, 16);
+            write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+            byte[] bytein = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytein, 4);
             write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF&(x>>8));
+            write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
             mClient.write(MAC, service, character, write, this);
         }
     }
 
     //温度减
-    public  void  setMinus(){
+    public void setMinus() {
         int setting = dataRead.getTempSetting();
         setting--;
 
-        if( (service!= null) && (character!=null)){
-            byte []write = new byte[8];
+        if ((service != null) && (character != null)) {
+            byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
 
-                write[1] = 0x03;
-                write[2] = (byte) setting;
+            write[1] = 0x03;
+            write[2] = (byte) setting;
 
-            write[3] = (byte) Integer.parseInt(a,16);
-            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-            int x =  utilCRC.alex_crc16(bytein,4);
+            write[3] = (byte) Integer.parseInt(a, 16);
+            write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+            byte[] bytein = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytein, 4);
             write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF&(x>>8));
+            write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
             mClient.write(MAC, service, character, write, this);
         }
     }
 
     //温度加
-    public  void  setAdd(){
+    public void setAdd() {
         int setting = dataRead.getTempSetting();
         int froze = dataRead.getFroseSetinng();
 
-            setting++;
+        setting++;
 
-        if( (service!= null) && (character!=null)){
-            byte []write = new byte[8];
+        if ((service != null) && (character != null)) {
+            byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
 
-                write[1] = 0x03;
-                write[2] = (byte) setting;
+            write[1] = 0x03;
+            write[2] = (byte) setting;
 
-            write[3] = (byte) Integer.parseInt(a,16);
-            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-            int x =  utilCRC.alex_crc16(bytein,4);
+            write[3] = (byte) Integer.parseInt(a, 16);
+            write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+            byte[] bytein = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytein, 4);
             write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF&(x>>8));
+            write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
             mClient.write(MAC, service, character, write, this);
         }
@@ -469,31 +469,26 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
 
     //海鲜模式
     @SuppressLint("UseCompatLoadingForDrawables")
-    public  void setSeafood(){
-        if(style !=1){
+    public void setSeafood() {
+        if (style != 1) {
             style = 1;
-        }else{
+        } else {
             style = 0;
         }
-//        iv_back.setImageResource(R.drawable.backfresh);
-//        bt_seafood.setBackground(getDrawable(R.drawable.fresh1));
-//        bt_drink.setBackground(getDrawable(R.drawable.drink));
-//        bt_ice.setBackground(getDrawable(R.drawable.icecream));
-//        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
 
-        if( (service!= null) && (character!=null)){
-            byte []write = new byte[8];
+        if ((service != null) && (character != null)) {
+            byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
 
-                write[1] = 0x03;
+            write[1] = 0x03;
 
             write[2] = -20;
-            write[3] = (byte) Integer.parseInt(a,16);
-            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-            int x =  utilCRC.alex_crc16(bytein,4);
+            write[3] = (byte) Integer.parseInt(a, 16);
+            write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+            byte[] bytein = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytein, 4);
             write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF&(x>>8));
+            write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
             mClient.write(MAC, service, character, write, this);
         }
@@ -501,32 +496,27 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
 
     //饮料模式
     @SuppressLint("UseCompatLoadingForDrawables")
-    public  void setDrink(){
-        if(style !=2){
+    public void setDrink() {
+        if (style != 2) {
             style = 2;
-        }else{
+        } else {
             style = 0;
         }
-//        iv_back.setImageResource(R.drawable.backdrink);
-//        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-//        bt_drink.setBackground(getDrawable(R.drawable.drink1));
-//        bt_ice.setBackground(getDrawable(R.drawable.icecream));
-//        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
 
-        if( (service!= null) && (character!=null)){
-            byte []write = new byte[8];
+        if ((service != null) && (character != null)) {
+            byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
             write[0] = (byte) 0xAA;
 
-                write[1] = 0x03;
+            write[1] = 0x03;
 
             write[2] = 4;
-            write[3] = (byte) Integer.parseInt(a,16);
-            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-            int x =  utilCRC.alex_crc16(bytein,4);
+            write[3] = (byte) Integer.parseInt(a, 16);
+            write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+            byte[] bytein = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytein, 4);
             write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF&(x>>8));
+            write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
             mClient.write(MAC, service, character, write, this);
         }
@@ -534,32 +524,27 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
 
     //冰淇淋模式
     @SuppressLint("UseCompatLoadingForDrawables")
-    public  void setIce(){
-        if(style !=3){
+    public void setIce() {
+        if (style != 3) {
             style = 3;
-        }else{
+        } else {
             style = 0;
         }
-//        iv_back.setImageResource(R.drawable.backicecream);
-//        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-//        bt_drink.setBackground(getDrawable(R.drawable.drink));
-//        bt_ice.setBackground(getDrawable(R.drawable.icecream1));
-//        bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
 
-        if( (service!= null) && (character!=null)){
-            byte []write = new byte[8];
+        if ((service != null) && (character != null)) {
+            byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
             write[0] = (byte) 0xAA;
 
-                write[1] = 0x03;
+            write[1] = 0x03;
 
             write[2] = -15;
-            write[3] = (byte) Integer.parseInt(a,16);
-            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-            int x =  utilCRC.alex_crc16(bytein,4);
+            write[3] = (byte) Integer.parseInt(a, 16);
+            write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+            byte[] bytein = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytein, 4);
             write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF&(x>>8));
+            write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
             mClient.write(MAC, service, character, write, this);
         }
@@ -567,32 +552,27 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
 
     //蔬菜模式
     @SuppressLint("UseCompatLoadingForDrawables")
-    public  void setVagetable(){
-        if(style !=4){
+    public void setVagetable() {
+        if (style != 4) {
             style = 4;
-        }else{
+        } else {
             style = 0;
         }
-//        iv_back.setImageResource(R.drawable.backfruit);
-//        bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-//        bt_drink.setBackground(getDrawable(R.drawable.drink));
-//        bt_ice.setBackground(getDrawable(R.drawable.icecream));
-//        bt_vagetable.setBackground(getDrawable(R.drawable.fruit1));
 
-        if( (service!= null) && (character!=null)){
-            byte []write = new byte[8];
+        if ((service != null) && (character != null)) {
+            byte[] write = new byte[8];
             write[0] = (byte) 0xAA;
             write[0] = (byte) 0xAA;
 
-                write[1] = 0x03;
+            write[1] = 0x03;
 
             write[2] = 8;
-            write[3] = (byte) Integer.parseInt(a,16);
-            write[4] = (byte) (Integer.parseInt(b,16)*16 +Integer.parseInt(c,16));
-            byte[]  bytein = {write[1],write[2],write[3],write[4]};
-            int x =  utilCRC.alex_crc16(bytein,4);
+            write[3] = (byte) Integer.parseInt(a, 16);
+            write[4] = (byte) (Integer.parseInt(b, 16) * 16 + Integer.parseInt(c, 16));
+            byte[] bytein = {write[1], write[2], write[3], write[4]};
+            int x = utilCRC.alex_crc16(bytein, 4);
             write[6] = (byte) (0xFF & x);
-            write[5] = (byte) (0xFF&(x>>8));
+            write[5] = (byte) (0xFF & (x >> 8));
             write[7] = 0x55;
             mClient.write(MAC, service, character, write, this);
         }
@@ -601,24 +581,27 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
 
     //更新状态
     @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
-    public void updateStatus(byte[] data){
-        Log.v("---update","successfully!");
-        if(data.length == 22){
+    public void updateStatus(byte[] data) {
+        Log.v("---update", "successfully!");
+        if (data.length == 22) {
             dataRead.setData(data);
-        }else{
+        } else {
             return;
         }
         int setting = dataRead.getTempSetting(); //设定温度
         int real = dataRead.getTempReal();  //实时温度
         int scale = dataRead.getUnit();  //单位
-        int frose = dataRead.getFroseSetinng(); //冷藏设定
+        if(scale == 0){
+            bt_unit.setImageResource(R.drawable.fahre);
+        }else{
+            bt_unit.setImageResource(R.drawable.ceils);
+        }
 
-        if(setting>127)  setting -= 256;
-
-        if(real>127) real -= 256;
+        if (setting > 127) setting -= 256;
+        if (real > 127) real -= 256;
 
         //关机
-        if(dataRead.getPower() == 0){
+        if (dataRead.getPower() == 0) {
             bt_unit.setImageResource(R.drawable.ceils);
             iv_back.setImageResource(R.drawable.center);
             bt_seafood.setImageResource(R.drawable.fresh);
@@ -627,7 +610,7 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
             bt_vagetable.setImageResource(R.drawable.fruit);
             text_setting.setText("0°C");
             text_setting.setTextColor(Color.WHITE);
-        }else{
+        } else {
             //开机
             iv_back.setImageResource(R.drawable.center);
             bt_seafood.setImageResource(R.drawable.fresh);
@@ -635,12 +618,12 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
             bt_ice.setImageResource(R.drawable.icecream);
             bt_vagetable.setImageResource(R.drawable.fruit);
 
-            if(scale == 0) {
+            if (scale == 0) {
                 bt_unit.setBackground(getDrawable(R.drawable.fahre));
-            }else{
+            } else {
                 bt_unit.setBackground(getDrawable(R.drawable.ceils));
             }
-            switch (style){
+            switch (style) {
                 case 1:
                     iv_back.setImageResource(R.drawable.backfresh);
                     bt_seafood.setImageResource(R.drawable.fresh1);
@@ -658,43 +641,23 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
                     bt_vagetable.setImageResource(R.drawable.fruit1);
                     break;
                 default:
-//                    iv_back.setImageResource(R.drawable.center);
-//                   // bt_seafood.setBackground(getDrawable(R.drawable.fresh));
-//                    bt_seafood.setImageResource(R.drawable.fresh);
-//                    bt_drink.setBackground(getDrawable(R.drawable.drink));
-//                    bt_ice.setBackground(getDrawable(R.drawable.icecream));
-//                    bt_vagetable.setBackground(getDrawable(R.drawable.fruit));
                     break;
             }
 
             //实际温度显示
-            if(scale == 0){//华氏
-                text_setting.setText("Current: " + Math.round((real * 1.8 + 32)) + "℉") ;
-            }else{  //摄氏
+            if (scale == 0) {//华氏
+                text_setting.setText("Current: " + Math.round((real * 1.8 + 32)) + "℉");
+            } else {  //摄氏
                 text_setting.setText("Current: " + real + "°C");
             }
+            progressBar.setProgress(setting);
 
-            //滑动条显示
-            String  strImageFile;
-            if(setting >= 0){
-                strImageFile = "t" + String.valueOf(setting);
-            }else{
-                strImageFile = "t_" + String.valueOf(Math.abs(setting));
+            if (scale == 0) {//华氏
+                text_setting.setText(String.valueOf((int) (setting * 1.8 + 32)) + "℉");
+            } else {  //摄氏
+                text_setting.setText(String.valueOf(setting) + "°C");
             }
-//            int resourchId = this.getResources().getIdentifier(strImageFile,"mipmap",this.getPackageName());
-//            iv_progress.setImageResource(resourchId);
-
-            //
-           // String slidetem;  //滑动条
-            //双温冷藏或单温
-
-                if(scale == 0){//华氏
-                    text_setting.setText( String.valueOf( (int) (setting*1.8+32)) +  "℉") ;
-                }else{  //摄氏
-                    text_setting.setText(String.valueOf(setting)+"°C");
-                }
-               // slidetem = String.valueOf(setting);
-
+            // slidetem = String.valueOf(setting);
         }
     }
 }
