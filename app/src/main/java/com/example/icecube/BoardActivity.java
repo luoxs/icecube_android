@@ -261,6 +261,7 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
     //初始化控件
     public void initController() {
         bt_return = findViewById(R.id.btback);
+        text_setting = findViewById(R.id.txttemp);
         bt_unit = findViewById(R.id.btunit);
         iv_back = findViewById(R.id.imageback);
         bt_minus = findViewById(R.id.btminus);
@@ -618,7 +619,7 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
 
         //关机
         if(dataRead.getPower() == 0){
-            bt_unit.setBackground(getDrawable(R.drawable.ceils));
+            bt_unit.setImageResource(R.drawable.ceils);
             iv_back.setImageResource(R.drawable.center);
             bt_seafood.setImageResource(R.drawable.fresh);
             bt_drink.setImageResource(R.drawable.drink);
@@ -628,6 +629,11 @@ public class BoardActivity extends AppCompatActivity implements  android.view.Vi
             text_setting.setTextColor(Color.WHITE);
         }else{
             //开机
+            iv_back.setImageResource(R.drawable.center);
+            bt_seafood.setImageResource(R.drawable.fresh);
+            bt_drink.setImageResource(R.drawable.drink);
+            bt_ice.setImageResource(R.drawable.icecream);
+            bt_vagetable.setImageResource(R.drawable.fruit);
 
             if(scale == 0) {
                 bt_unit.setBackground(getDrawable(R.drawable.fahre));
