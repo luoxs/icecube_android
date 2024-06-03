@@ -15,10 +15,10 @@
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/white"
         android:textColor="#E4E4E4"
-        android:textSize="40sp"
+        android:textSize="36sp"
         android:textAlignment="textStart"
         app:cornerRadius="0dp"
-        android:text="high"/>
+        android:text="ВЫСОКИЙ ур.защиты 11.8V"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btmiddle"
@@ -27,10 +27,10 @@
         android:layout_marginTop="220dp"
         android:backgroundTint="@color/white"
         android:textColor="#E4E4E4"
-        android:textSize="40sp"
+        android:textSize="36sp"
         android:textAlignment="textStart"
         app:cornerRadius="0dp"
-        android:text="middle"/>
+        android:text="СРЕДНИЙ ур.защиты 11.4V"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btlow"
@@ -39,10 +39,10 @@
         android:layout_marginTop="340dp"
         android:backgroundTint="@color/white"
         android:textColor="#E4E4E4"
-        android:textSize="40sp"
+        android:textSize="33sp"
         android:textAlignment="textStart"
         app:cornerRadius="0dp"
-        android:text="low"/>
+        android:text="НИЗКИЙ ур.защиты 11.1V"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btcomfirm"
@@ -55,6 +55,6 @@
         app:cornerRadius="10dp"
         app:strokeColor="#E4E4E4"
         app:strokeWidth="4dp"
-        android:textSize="40sp"
+        android:textSize="32sp"
         android:text="ok"/>
 </RelativeLayout>

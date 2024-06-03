@@ -16,9 +16,9 @@
         android:backgroundTint="@color/white"
         android:textColor="#E4E4E4"
         android:textSize="40sp"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         app:cornerRadius="0dp"
-        android:text="Turbo"/>
+        android:text="ТУРБО режим"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bteco"
@@ -28,9 +28,9 @@
         android:backgroundTint="@color/white"
         android:textColor="#E4E4E4"
         android:textSize="40sp"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         app:cornerRadius="0dp"
-        android:text="eco"/>
+        android:text="ЭКО режим"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btcomfirm"

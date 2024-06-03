@@ -95,7 +95,8 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
 
         boolean locationEnable = isLocationEnabled();
         if (!locationEnable) {
-            Toast.makeText(ScanActivity.this, "Please turn on location", Toast.LENGTH_SHORT).show();
+            //please turn on location
+            Toast.makeText(ScanActivity.this, "Пожалуйста, откройте позицию.", Toast.LENGTH_SHORT).show();
         }
 
         // 检测PHONE_STATE 如果已授权
@@ -143,7 +144,8 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
                 if (device.getName().startsWith(brand)) {
                     prgbar.setVisibility(View.INVISIBLE);
                     if (!arrayList.contains(device.getName())) {
-                        Toast.makeText(ScanActivity.this, "Device Found. you can connet it now!", Toast.LENGTH_SHORT).show();
+                        //Device Found. you can connet it now翻译
+                        Toast.makeText(ScanActivity.this, "Найти оборудование. Теперь вы можете подключиться.!", Toast.LENGTH_SHORT).show();
                         arrayList.add(device.getName());
                         arrayMAC.add(device.getAddress());
                         if(arrayList.size()>=2) mClient.stopSearch();
@@ -154,7 +156,8 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
             @Override
             public void onSearchStopped() {
                 prgbar.setVisibility(View.INVISIBLE);
-                Toast.makeText(ScanActivity.this, "Device not Found!", Toast.LENGTH_SHORT).show();
+                //Device not Found翻译
+                Toast.makeText(ScanActivity.this, "Не удалось найти оборудование!", Toast.LENGTH_SHORT).show();
                 Log.v("over", "-------scanstopped");
                 for (String name : arrayList) {
                     Log.v("----name---", name);
@@ -188,7 +191,8 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         // String[] array = new String[]{"A", "B", "C", "D", "E"};
         String[] array = arrayList.toArray(new String[0]);
-        builder.setTitle("Select a Device to Connect")
+        //Select a Device to Connect翻译
+        builder.setTitle("Выберите устройство для подключения")
                 .setCancelable(true)
                 .setItems(array, new DialogInterface.OnClickListener() {
                     @Override
@@ -237,7 +241,9 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
                     }
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Wrong").setMessage("This is a wrong QR code!");
+
+                    //Wrong .....This is a wrong QR code
+                    builder.setTitle("Ошибка").setMessage("Это неправильный QR - код.!");
                     // 获取AlertDialog
                     AlertDialog dialog = builder.create();
                     // 显示
@@ -262,7 +268,9 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
     //连接设备
     private void connect(int i) {
         mClient.stopSearch();
-        progressDialog = ProgressDialog.show(ScanActivity.this, "Connect", "Connect device...");
+        //connect  。。。。connect device
+
+        progressDialog = ProgressDialog.show(ScanActivity.this, "Подключение", "Соединительное устройство...");
         BleConnectOptions options = new BleConnectOptions.Builder()
                 .setConnectRetry(3)   // 连接如果失败重试3次
                 .setConnectTimeout(30000)   // 连接超时30s
@@ -281,18 +289,6 @@ public class ScanActivity extends AppCompatActivity implements CustomAdapt {
                     progressDialog.dismiss();
 
                     checkpass(arrayMAC.get(i));
-//
-//                    Intent intent = new Intent();
-//                    SharedPreferences sp = getSharedPreferences("intentdata",MODE_PRIVATE);//获取
-//                    SharedPreferences.Editor editor = sp.edit(); // 获取编辑器对象
-//                    editor.putString("MAC",arrayMAC.get(i)); // 存入String类型数据
-//                    editor.putString("brand",brand); // 存入int类型数据
-//                    editor.putString("sn",arrayList.get(i));
-//                    editor.commit(); // 提交数据
-//
-//                    intent.setClass(ScanActivity.this, BoardActivity.class);
-//
-//                    startActivity(intent);
                 } else if (code == REQUEST_FAILED) {
                     progressDialog.dismiss();
                 }

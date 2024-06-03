@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,12 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
     private String a, b, c;   //密码
     private int style;  //四种保鲜模式
 
+    //用于定时
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private int count = 0;
+    private boolean isRunning = true;
+
     @Override
     public boolean isBaseOnWidth() {
         return false;
@@ -80,6 +87,27 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
         return 0;
     }
 
+    private void starttimer(){
+        if (!isRunning) {
+            isRunning = true;
+            runnable = new Runnable() {
+                @Override
+                public void run() {
+                    count++;
+                    getStatus();
+                    handler.postDelayed(this, 5000); // 5000 milliseconds
+                }
+            };
+        }
+        handler.postDelayed(runnable, 1000); // Initial delay
+    }
+
+    private  void stoptimer(){
+        if (isRunning) {
+            isRunning = false;
+            handler.removeCallbacks(runnable);
+        }
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -89,6 +117,8 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
 
         btmode = findViewById(R.id.btmode);
         btstatus = findViewById(R.id.btstatus);
+
+        handler = new Handler();
 
         initBluetooth();  //初始化蓝牙
         initController();  //初始化控件
@@ -387,6 +417,7 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
     public void onNotify(UUID service, UUID character, byte[] value) {
         Log.v("notify", "recieve notify!");
         updateStatus(value);
+        starttimer();
     }
 
     //开机关机
@@ -458,9 +489,8 @@ public class BoardActivity extends AppCompatActivity implements android.view.Vie
 
     //温度加
     public void setAdd() {
+        stoptimer();
         int setting = dataRead.getTempSetting();
-        int froze = dataRead.getFroseSetinng();
-
         setting++;
 
         if ((service != null) && (character != null)) {
